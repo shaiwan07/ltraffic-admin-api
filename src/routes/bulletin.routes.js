@@ -10,8 +10,8 @@ const validate = require('../middlewares/validate.middleware');
 // Bulletin images are stored in the bulletin/ directory at the employeesarea root.
 // The employee web displays them from httpdocs/employeesarea/bulletin/ and the DB stores
 // just the filename (e.g. PPERules1.jpeg) — no path prefix in the database.
-const bulletinDir = path.join(process.env.UPLOADS_ROOT || './dev-files', 'bulletin');
-if (!fs.existsSync(bulletinDir)) fs.mkdirSync(bulletinDir, { recursive: true });
+const bulletinDir = path.join(process.env.UPLOADS_ROOT || path.join(__dirname, '..', '..', 'dev-files'), 'bulletin');
+try { fs.mkdirSync(bulletinDir, { recursive: true }); } catch (_) { /* directory may already exist or be managed by the server */ }
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

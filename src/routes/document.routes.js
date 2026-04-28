@@ -9,8 +9,8 @@ const validate = require('../middlewares/validate.middleware');
 
 // PHP admin stores equipment register documents in admin/erfiles/ (ajaxupload4.php: $path='erfiles/').
 // DB stores the path without the 'admin/' prefix: erfiles/filename.pdf
-const equipmentDir = path.join(process.env.UPLOADS_ROOT || './dev-files', 'admin', 'erfiles');
-if (!fs.existsSync(equipmentDir)) fs.mkdirSync(equipmentDir, { recursive: true });
+const equipmentDir = path.join(process.env.UPLOADS_ROOT || path.join(__dirname, '..', '..', 'dev-files'), 'admin', 'erfiles');
+try { fs.mkdirSync(equipmentDir, { recursive: true }); } catch (_) { /* directory may already exist or be managed by the server */ }
 
 const storage = multer.diskStorage({
   destination: equipmentDir,

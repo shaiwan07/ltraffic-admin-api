@@ -9,8 +9,8 @@ const validate = require('../middlewares/validate.middleware');
 
 // PHP stores HR photos in admin/employeephoto/ (relative to employeesarea root).
 // The DB stores the path without the 'admin/' prefix: employeephoto/filename.jpg
-const hrDir = path.join(process.env.UPLOADS_ROOT || './dev-files', 'admin', 'employeephoto');
-if (!fs.existsSync(hrDir)) fs.mkdirSync(hrDir, { recursive: true });
+const hrDir = path.join(process.env.UPLOADS_ROOT || path.join(__dirname, '..', '..', 'dev-files'), 'admin', 'employeephoto');
+try { fs.mkdirSync(hrDir, { recursive: true }); } catch (_) { /* directory may already exist or be managed by the server */ }
 
 const storage = multer.diskStorage({
   destination: hrDir,
