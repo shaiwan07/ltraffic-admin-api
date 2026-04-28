@@ -13,8 +13,8 @@ const options = {
       contact: { name: 'LTraffic Limited', email: 'al@ltraffic.co.uk' },
     },
     servers: [
+      { url: 'https://admin-api.ltraffic.co.uk/api', description: 'Production' },
       { url: 'http://localhost:4000/api', description: 'Development' },
-      { url: 'https://ltraffic.co.uk/admin-api', description: 'Production' },
     ],
     components: {
       securitySchemes: {
