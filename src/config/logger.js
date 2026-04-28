@@ -13,10 +13,14 @@
 const { createLogger, format, transports } = require('winston');
 require('winston-daily-rotate-file');
 const path = require('path');
+const fs = require('fs');
 
 const { combine, timestamp, printf, colorize, errors, json, splat } = format;
 
 const isDev = process.env.NODE_ENV !== 'production';
+
+const logsDir = path.join(__dirname, '..', '..', 'logs');
+try { fs.mkdirSync(logsDir, { recursive: true }); } catch (_) { /* ignore permission errors */ }
 
 /**
  * Console format: coloured, human-readable with timestamp and metadata.
@@ -50,7 +54,7 @@ const logger = createLogger({
     new transports.Console({ format: consoleFormat }),
     // Error-only log file, rotated daily, compressed after rotation, kept 30 days
     new transports.DailyRotateFile({
-      filename: path.join('logs', 'error-%DATE%.log'),
+      filename: path.join(logsDir, 'error-%DATE%.log'),
       datePattern: 'YYYY-MM-DD',
       level: 'error',
       format: fileFormat,
@@ -59,7 +63,7 @@ const logger = createLogger({
     }),
     // Combined log file (all levels), rotated daily, kept 14 days
     new transports.DailyRotateFile({
-      filename: path.join('logs', 'combined-%DATE%.log'),
+      filename: path.join(logsDir, 'combined-%DATE%.log'),
       datePattern: 'YYYY-MM-DD',
       format: fileFormat,
       maxFiles: '14d',
