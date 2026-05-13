@@ -13,7 +13,7 @@ const incidentDir = path.join(process.env.UPLOADS_ROOT || path.join(__dirname, '
 try { fs.mkdirSync(incidentDir, { recursive: true }); } catch (_) { /* directory may already exist or be managed by the server */ }
 
 const storage = multer.diskStorage({
-  destination: incidentDir,
+  destination: (req, file, cb) => { cb(null, incidentDir); },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
   },
