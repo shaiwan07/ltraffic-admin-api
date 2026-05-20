@@ -141,8 +141,8 @@ router.post('/coshh',
 
 /**
  * @swagger
- * /documents/coshh/{id}:
- *   put:
+ * /documents/coshh/{id}/update:
+ *   post:
  *     tags: [Documents]
  *     summary: Update COSHH document (Admin only)
  *     parameters:
@@ -164,12 +164,12 @@ router.post('/coshh',
  *       200:
  *         description: Updated
  */
-router.put('/coshh/:id', authenticate, adminOnly, ctrl.coshhUpdate);
+router.post('/coshh/:id/update', authenticate, adminOnly, ctrl.coshhUpdate);
 
 /**
  * @swagger
- * /documents/coshh/{id}:
- *   delete:
+ * /documents/coshh/{id}/delete:
+ *   post:
  *     tags: [Documents]
  *     summary: Delete COSHH document (Admin only)
  *     parameters:
@@ -182,7 +182,7 @@ router.put('/coshh/:id', authenticate, adminOnly, ctrl.coshhUpdate);
  *       200:
  *         description: Deleted
  */
-router.delete('/coshh/:id', authenticate, adminOnly, ctrl.coshhRemove);
+router.post('/coshh/:id/delete', authenticate, adminOnly, ctrl.coshhRemove);
 
 /**
  * @swagger
@@ -241,8 +241,8 @@ router.post('/equipment/:equipmentId/docs',
 
 /**
  * @swagger
- * /documents/equipment/docs/{id}:
- *   delete:
+ * /documents/equipment/docs/{id}/delete:
+ *   post:
  *     tags: [Documents]
  *     summary: Delete equipment document (Admin only)
  *     parameters:
@@ -255,6 +255,6 @@ router.post('/equipment/:equipmentId/docs',
  *       200:
  *         description: Deleted
  */
-router.delete('/equipment/docs/:id', authenticate, adminOnly, ctrl.erDocRemove);
+router.post('/equipment/docs/:id/delete', authenticate, adminOnly, ctrl.erDocRemove);
 
 module.exports = router;

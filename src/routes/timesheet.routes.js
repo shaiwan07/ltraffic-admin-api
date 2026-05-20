@@ -150,7 +150,7 @@ router.get('/:id', authenticate, adminOnly, ctrl.getById);
 /**
  * @swagger
  * /timesheets/{id}/approve:
- *   patch:
+ *   post:
  *     tags: [Timesheets]
  *     summary: Approve a timesheet
  *     parameters:
@@ -163,12 +163,12 @@ router.get('/:id', authenticate, adminOnly, ctrl.getById);
  *       200:
  *         description: Timesheet approved
  */
-router.patch('/:id/approve', authenticate, adminOnly, ctrl.approve);
+router.post('/:id/approve', authenticate, adminOnly, ctrl.approve);
 
 /**
  * @swagger
  * /timesheets/{id}/reject:
- *   patch:
+ *   post:
  *     tags: [Timesheets]
  *     summary: Reject a timesheet
  *     parameters:
@@ -181,12 +181,12 @@ router.patch('/:id/approve', authenticate, adminOnly, ctrl.approve);
  *       200:
  *         description: Timesheet rejected
  */
-router.patch('/:id/reject', authenticate, adminOnly, ctrl.reject);
+router.post('/:id/reject', authenticate, adminOnly, ctrl.reject);
 
 /**
  * @swagger
- * /timesheets/{id}:
- *   delete:
+ * /timesheets/{id}/delete:
+ *   post:
  *     tags: [Timesheets]
  *     summary: Delete timesheet (Admin only)
  *     parameters:
@@ -201,6 +201,6 @@ router.patch('/:id/reject', authenticate, adminOnly, ctrl.reject);
  *       404:
  *         description: Not found
  */
-router.delete('/:id', authenticate, adminOnly, ctrl.remove);
+router.post('/:id/delete', authenticate, adminOnly, ctrl.remove);
 
 module.exports = router;

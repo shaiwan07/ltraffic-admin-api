@@ -178,8 +178,8 @@ router.post('/',
 
 /**
  * @swagger
- * /bulletins/{id}:
- *   put:
+ * /bulletins/{id}/update:
+ *   post:
  *     tags: [Bulletins]
  *     summary: Update bulletin (Admin only)
  *     parameters:
@@ -204,7 +204,7 @@ router.post('/',
  *       200:
  *         description: Updated
  */
-router.put('/:id',
+router.post('/:id/update',
   authenticate,
   adminOnly,
   upload.fields([{ name: 'image', maxCount: 1 }, { name: 'download', maxCount: 1 }]),
@@ -213,8 +213,8 @@ router.put('/:id',
 
 /**
  * @swagger
- * /bulletins/{id}:
- *   delete:
+ * /bulletins/{id}/delete:
+ *   post:
  *     tags: [Bulletins]
  *     summary: Delete bulletin (Admin only)
  *     parameters:
@@ -227,6 +227,6 @@ router.put('/:id',
  *       200:
  *         description: Deleted
  */
-router.delete('/:id', authenticate, adminOnly, ctrl.remove);
+router.post('/:id/delete', authenticate, adminOnly, ctrl.remove);
 
 module.exports = router;

@@ -122,8 +122,8 @@ router.post('/',
 
 /**
  * @swagger
- * /equipment/{id}:
- *   put:
+ * /equipment/{id}/update:
+ *   post:
  *     tags: [Equipment]
  *     summary: Update equipment item (Admin + Admin1)
  *     parameters:
@@ -149,12 +149,12 @@ router.post('/',
  *       200:
  *         description: Updated
  */
-router.put('/:id', authenticate, adminOnly, ctrl.update);
+router.post('/:id/update', authenticate, adminOnly, ctrl.update);
 
 /**
  * @swagger
- * /equipment/{id}:
- *   delete:
+ * /equipment/{id}/delete:
+ *   post:
  *     tags: [Equipment]
  *     summary: Delete equipment item (Admin only)
  *     parameters:
@@ -167,6 +167,6 @@ router.put('/:id', authenticate, adminOnly, ctrl.update);
  *       200:
  *         description: Deleted
  */
-router.delete('/:id', authenticate, adminOnly, ctrl.remove);
+router.post('/:id/delete', authenticate, adminOnly, ctrl.remove);
 
 module.exports = router;

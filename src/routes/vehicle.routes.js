@@ -132,8 +132,8 @@ router.post('/',
 
 /**
  * @swagger
- * /vehicles/{id}:
- *   put:
+ * /vehicles/{id}/update:
+ *   post:
  *     tags: [Vehicle Checks]
  *     summary: Update vehicle check (Admin + Admin1)
  *     parameters:
@@ -160,12 +160,12 @@ router.post('/',
  *       200:
  *         description: Updated
  */
-router.put('/:id', authenticate, adminOnly, ctrl.update);
+router.post('/:id/update', authenticate, adminOnly, ctrl.update);
 
 /**
  * @swagger
- * /vehicles/{id}:
- *   delete:
+ * /vehicles/{id}/delete:
+ *   post:
  *     tags: [Vehicle Checks]
  *     summary: Delete vehicle check (Admin only)
  *     parameters:
@@ -180,6 +180,6 @@ router.put('/:id', authenticate, adminOnly, ctrl.update);
  *       404:
  *         description: Not found
  */
-router.delete('/:id', authenticate, adminOnly, ctrl.remove);
+router.post('/:id/delete', authenticate, adminOnly, ctrl.remove);
 
 module.exports = router;

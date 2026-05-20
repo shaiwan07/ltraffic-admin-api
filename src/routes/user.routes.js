@@ -123,8 +123,8 @@ router.post('/',
 
 /**
  * @swagger
- * /users/{id}:
- *   put:
+ * /users/{id}/update:
+ *   post:
  *     tags: [Users]
  *     summary: Update user details (Admin + Admin1)
  *     parameters:
@@ -153,12 +153,12 @@ router.post('/',
  *       200:
  *         description: User updated
  */
-router.put('/:id', authenticate, adminOnly, ctrl.update);
+router.post('/:id/update', authenticate, adminOnly, ctrl.update);
 
 /**
  * @swagger
  * /users/{id}/reset-password:
- *   patch:
+ *   post:
  *     tags: [Users]
  *     summary: Reset user password (Admin only)
  *     parameters:
@@ -182,7 +182,7 @@ router.put('/:id', authenticate, adminOnly, ctrl.update);
  *       200:
  *         description: Password reset
  */
-router.patch('/:id/reset-password',
+router.post('/:id/reset-password',
   authenticate,
   adminOnly,
   [body('new_password').isLength({ min: 8 }).withMessage('New password must be at least 8 characters.')],
@@ -193,7 +193,7 @@ router.patch('/:id/reset-password',
 /**
  * @swagger
  * /users/{id}/restrict:
- *   patch:
+ *   post:
  *     tags: [Users]
  *     summary: Restrict or unrestrict user (Admin only)
  *     parameters:
@@ -217,7 +217,7 @@ router.patch('/:id/reset-password',
  *       200:
  *         description: User restriction updated
  */
-router.patch('/:id/restrict',
+router.post('/:id/restrict',
   authenticate,
   adminOnly,
   [body('restricted').isBoolean().withMessage('restricted must be a boolean.')],
@@ -227,8 +227,8 @@ router.patch('/:id/restrict',
 
 /**
  * @swagger
- * /users/{id}:
- *   delete:
+ * /users/{id}/delete:
+ *   post:
  *     tags: [Users]
  *     summary: Delete user (Admin only — irreversible)
  *     parameters:
@@ -243,6 +243,6 @@ router.patch('/:id/restrict',
  *       404:
  *         description: Not found
  */
-router.delete('/:id', authenticate, adminOnly, ctrl.remove);
+router.post('/:id/delete', authenticate, adminOnly, ctrl.remove);
 
 module.exports = router;

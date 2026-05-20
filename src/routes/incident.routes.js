@@ -177,8 +177,8 @@ router.post('/',
 
 /**
  * @swagger
- * /incidents/{id}:
- *   put:
+ * /incidents/{id}/update:
+ *   post:
  *     tags: [Incidents]
  *     summary: Update incident (Admin + Admin1)
  *     parameters:
@@ -212,12 +212,12 @@ router.post('/',
  *       200:
  *         description: Incident updated
  */
-router.put('/:id', authenticate, adminOnly, upload.single('image'), ctrl.update);
+router.post('/:id/update', authenticate, adminOnly, upload.single('image'), ctrl.update);
 
 /**
  * @swagger
  * /incidents/{id}/status:
- *   patch:
+ *   post:
  *     tags: [Incidents]
  *     summary: Update incident status (open/close)
  *     parameters:
@@ -241,7 +241,7 @@ router.put('/:id', authenticate, adminOnly, upload.single('image'), ctrl.update)
  *       200:
  *         description: Status updated
  */
-router.patch('/:id/status',
+router.post('/:id/status',
   authenticate,
   adminOnly,
   [body('status').isIn(['Open', 'Closed']).withMessage('Status must be Open or Closed.')],
@@ -251,8 +251,8 @@ router.patch('/:id/status',
 
 /**
  * @swagger
- * /incidents/{id}:
- *   delete:
+ * /incidents/{id}/delete:
+ *   post:
  *     tags: [Incidents]
  *     summary: Delete incident (Admin only)
  *     parameters:
@@ -267,6 +267,6 @@ router.patch('/:id/status',
  *       404:
  *         description: Not found
  */
-router.delete('/:id', authenticate, adminOnly, ctrl.remove);
+router.post('/:id/delete', authenticate, adminOnly, ctrl.remove);
 
 module.exports = router;

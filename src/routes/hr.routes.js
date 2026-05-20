@@ -159,8 +159,8 @@ router.post('/',
 
 /**
  * @swagger
- * /hr/{id}:
- *   put:
+ * /hr/{id}/update:
+ *   post:
  *     tags: [HR Manager]
  *     summary: Update HR record (Admin + Admin1)
  *     parameters:
@@ -188,12 +188,12 @@ router.post('/',
  *       200:
  *         description: Updated
  */
-router.put('/:id', authenticate, adminOnly, upload.single('photoimage'), ctrl.update);
+router.post('/:id/update', authenticate, adminOnly, upload.single('photoimage'), ctrl.update);
 
 /**
  * @swagger
- * /hr/{id}:
- *   delete:
+ * /hr/{id}/delete:
+ *   post:
  *     tags: [HR Manager]
  *     summary: Delete HR record (Admin only)
  *     parameters:
@@ -206,6 +206,6 @@ router.put('/:id', authenticate, adminOnly, upload.single('photoimage'), ctrl.up
  *       200:
  *         description: Deleted
  */
-router.delete('/:id', authenticate, adminOnly, ctrl.remove);
+router.post('/:id/delete', authenticate, adminOnly, ctrl.remove);
 
 module.exports = router;
